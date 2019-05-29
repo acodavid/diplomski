@@ -15,6 +15,19 @@ class Pitanje extends Component {
         const { pitanja, carId, auth, cars } = this.props;
         const { datum } = this.props.pitanja;
 
+        let hour = parseInt(datum.slice(11, 13)); // 14, 16 minute
+        if (hour < 22) {
+            hour = hour + 2;
+        } else if (hour === 22) {
+            hour = 0;
+        } else if (hour === 23) {
+            hour = 1;
+        }
+
+        const minutes = datum.slice(14, 16);
+
+
+
         return (
             <div className="container mt-3 mb-3">
                 <div className="card card-secondary">
@@ -54,7 +67,7 @@ class Pitanje extends Component {
                     </div>
                     <div className="card-footer">
                         <p className="text-muted m-auto" style={{ display: "inline-block" }}>{datum.slice(8, 10) + '.' + datum.slice(5, 7) + '.' + datum.slice(0, 4) + '.'}</p>
-                        <p className="text-muted m-auto" style={{ float: "right" }}>{datum.slice(11, 16)}</p>
+                        <p className="text-muted m-auto" style={{ float: "right" }}>{hour + ':' + minutes}</p>
                     </div>
                 </div>
             </div>

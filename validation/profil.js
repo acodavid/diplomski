@@ -21,6 +21,10 @@ module.exports = function validacijaProfilInputa(podatak) {
         errors.brojTelefona = 'Broj telefona nije validan';
     }
 
+    if (!Validator.isNumeric(podatak.brojTelefona)) {
+        errors.brojTelefona = 'Broj telefona nije validan';
+    }
+
     if (Validator.isEmpty(podatak.brojTelefona)) {
         errors.brojTelefona = 'Polje za broj telefona je obavezno';
     }

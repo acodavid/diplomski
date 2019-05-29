@@ -25,7 +25,7 @@ module.exports = function validacijaObjaveInputa(podatak) {
         errors.model = 'Ime modela mora biti ispunjeno';
     }
 
-    if (!(podatak.godiste > 1900 && podatak.godiste <= 2019)) {
+    if (!(podatak.godiste >= 1900 && podatak.godiste <= 2019)) {
         errors.godiste = 'Godište mora biti između 1900 i 2019';
     }
 
@@ -33,12 +33,24 @@ module.exports = function validacijaObjaveInputa(podatak) {
         errors.godiste = 'Godište nije validno (format 19xx/20xx)';
     }
 
+    if (!Validator.isNumeric(podatak.godiste)) {
+        errors.godiste = 'Godište nije validno (format 19xx/20xx)';
+    }
+
     if (Validator.isEmpty(podatak.godiste)) {
         errors.godiste = 'Godište mora biti ispunjeno';
     }
 
+    if (!Validator.isNumeric(podatak.kilometraza)) {
+        errors.kilometraza = 'Kilometraza mora biti broj';
+    }
+
     if (Validator.isEmpty(podatak.kilometraza)) {
         errors.kilometraza = 'Kilometraža mora biti unesena';
+    }
+
+    if (!Validator.isNumeric(podatak.kw)) {
+        errors.kw = 'Kilovati moraju biti broj';
     }
 
     if (Validator.isEmpty(podatak.kw)) {
